@@ -3,7 +3,7 @@ export const uploadImageForAnalysis = async (imageFile: File) => {
     const formData = new FormData();
     formData.append("image", imageFile);
 
-    const response = await fetch("http://localhost:3000/api/analyze-image", {
+    const response = await fetch("http://localhost:5000/api/analyze-image", {
       method: "POST",
       body: formData,
     });

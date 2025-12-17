@@ -10,13 +10,13 @@ import { useState } from "react";
 const ImageAnalysisTab = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [result, setResult] = useState<object>({});
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setSelectedImage(file);
-      // Create a preview URL for displaying the image
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
     }
@@ -30,9 +30,10 @@ const ImageAnalysisTab = () => {
 
     setLoading(true);
     try {
-      const result = await uploadImageForAnalysis(selectedImage);
-      console.log("Backend response:", result);
-      // Handle the response here
+      const response = await uploadImageForAnalysis(selectedImage);
+      setResult(response);
+
+      console.log("Backend response:", response);
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to analyze image");
@@ -51,7 +52,6 @@ const ImageAnalysisTab = () => {
           <RotateCw />
         </Button>
       </div>
-
       <p className="text-[#71717A] font-sans text-sm font-normal leading-5 tracking-normal">
         Upload a food photo, and AI will detect the ingredients.
       </p>
@@ -73,7 +73,6 @@ const ImageAnalysisTab = () => {
           />
         </div>
       )}
-
       <div className="w-full flex justify-end">
         <Button
           onClick={handleGenerate}
@@ -93,10 +92,13 @@ const ImageAnalysisTab = () => {
           )}
         </Button>
       </div>
-
       <p className="text-[#09090B] font-sans text-xl font-semibold leading-7 tracking-normal flex flex-row gap-2">
         <FileText />
         Here is the summary
+      </p>
+
+      <p>
+        <p> {result?.result?.reasoning_content}</p>
       </p>
     </div>
   );
