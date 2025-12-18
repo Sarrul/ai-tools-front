@@ -1,11 +1,11 @@
-export const createFoodImage = async (foodDescription: string) => {
+export const createFoodImage = async (prompt: string) => {
   try {
-    const response = await fetch("http://localhost:3000/api/create-image", {
+    const response = await fetch("http://localhost:5000/api/create-image", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ foodDescription }),
+      body: JSON.stringify({ prompt }),
     });
 
     if (!response.ok) {

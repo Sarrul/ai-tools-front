@@ -97,9 +97,7 @@ const ImageAnalysisTab = () => {
         Here is the summary
       </p>
 
-      <p>
-        <p> {result?.result?.reasoning_content}</p>
-      </p>
+      <p> {result?.result?.reasoning_content}</p>
     </div>
   );
 };
