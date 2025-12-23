@@ -2,12 +2,16 @@
 
 import { createFoodImage } from "@/app/api/imageCreator";
 import { Button } from "@/components/ui/button";
-import { FileText, Image, RotateCw, Sparkles } from "lucide-react";
+import { FileText, RotateCw, Sparkles } from "lucide-react";
+import { Image as ImageIcon } from "lucide-react";
 import { useState } from "react";
 
 export default function ImageCreatorTab() {
   const [loading, setLoading] = useState<boolean>(false);
   const [prompt, setPrompt] = useState("");
+  const [panels, setPanels] = useState<{ caption: string; image: string }[]>(
+    []
+  );
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
@@ -18,7 +22,10 @@ export default function ImageCreatorTab() {
     setLoading(true);
     try {
       const response = await createFoodImage(prompt);
+
       console.log("Generated image:", response);
+
+      setPanels(response.result);
     } catch (error) {
       console.error(error);
       alert("Failed to generate image");
@@ -32,7 +39,7 @@ export default function ImageCreatorTab() {
       <div className="flex justify-between">
         <p className="text-[#09090B] font-sans text-xl font-semibold leading-7 tracking-normal flex flex-row gap-2">
           <Sparkles />
-          Image creator
+          Comic image generator
         </p>
         <Button variant="outline" className="h-10 w-12">
           <RotateCw />
@@ -40,7 +47,7 @@ export default function ImageCreatorTab() {
       </div>
 
       <p className="text-[#71717A] font-sans text-sm font-normal leading-5 tracking-normal">
-        What image do you want? Describe it briefly.{" "}
+        Right now you are a comic writer. Let your imagination come to life.
       </p>
       <textarea
         id="picture"
@@ -66,9 +73,18 @@ export default function ImageCreatorTab() {
       </div>
 
       <p className="text-[#09090B] font-sans text-xl font-semibold leading-7 tracking-normal flex flex-row gap-2">
-        <Image />
+        <ImageIcon />
         Result
       </p>
+
+      <div className="comic">
+        {panels.map((panel, index) => (
+          <div key={index} className={`panel panel-${index}`}>
+            <img src={panel.image} alt={`Panel ${index + 1}`} />
+            <p>{panel.caption}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
