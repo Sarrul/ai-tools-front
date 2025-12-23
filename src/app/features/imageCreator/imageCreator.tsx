@@ -3,7 +3,8 @@
 import { createFoodImage } from "@/app/api/imageCreator";
 import { Button } from "@/components/ui/button";
 import { FileText, RotateCw, Sparkles } from "lucide-react";
-import { Image as ImageIcon } from "lucide-react";
+import { ImageIcon } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function ImageCreatorTab() {
@@ -80,7 +81,7 @@ export default function ImageCreatorTab() {
       <div className="comic">
         {panels.map((panel, index) => (
           <div key={index} className={`panel panel-${index}`}>
-            <img src={panel.image} alt={`Panel ${index + 1}`} />
+            <Image src={panel.image} alt={`Panel ${index + 1}`} />
             <p>{panel.caption}</p>
           </div>
         ))}

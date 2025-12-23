@@ -7,11 +7,18 @@ import { FileText, RotateCw, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
+type AnalysisResult = {
+  result: {
+    reasoning_content: string;
+    [key: string]: any;
+  };
+};
+
 const ImageAnalysisTab = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [result, setResult] = useState<object>({});
+  const [result, setResult] = useState<AnalysisResult | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
