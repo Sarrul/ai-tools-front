@@ -164,6 +164,38 @@
   border: 2px solid black;
 }
 
+.dot {
+  display: inline-block;
+  font-size: 20px;
+  line-height: 1;
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-bounce-delay1 {
+  animation: bounce 1s infinite;
+  animation-delay: 0s;
+}
+
+.animate-bounce-delay2 {
+  animation: bounce 1s infinite;
+  animation-delay: 1s;
+}
+
+.animate-bounce-delay3 {
+  animation: bounce 1s infinite;
+  animation-delay: 2s;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
