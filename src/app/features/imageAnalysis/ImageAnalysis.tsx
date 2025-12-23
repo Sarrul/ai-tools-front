@@ -10,7 +10,7 @@ import { useState } from "react";
 type AnalysisResult = {
   result: {
     reasoning_content: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 };
 
