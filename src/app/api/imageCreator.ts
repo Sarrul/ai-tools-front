@@ -1,7 +1,7 @@
 export const createFoodImage = async (prompt: string) => {
   try {
     const response = await fetch(
-      "https://ai-tools-back-e29u.onrender.com/api/create-image",
+      "https://ai-tools-back-e3qy.onrender.com/api/create-image",
       {
         method: "POST",
         headers: {

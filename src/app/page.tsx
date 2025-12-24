@@ -30,7 +30,7 @@ export default function Home() {
 
     try {
       const response = await fetch(
-        "https://ai-tools-back-e29u.onrender.com/api/chat",
+        "https://ai-tools-back-e3qy.onrender.com/api/chat",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -4,7 +4,7 @@ export const uploadImageForAnalysis = async (imageFile: File) => {
     formData.append("image", imageFile);
 
     const response = await fetch(
-      "https://ai-tools-back-e29u.onrender.com/api/analyze-image",
+      "https://ai-tools-back-e3qy.onrender.com/api/analyze-image",
       {
         method: "POST",
         body: formData,
